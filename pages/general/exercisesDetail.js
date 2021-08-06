@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 const Index = ({exercise, muscles, router}) => {
     const classes = useStyles();
 
-    console.log('exercise',exercise)
 return exercise && muscles &&  <ExercisesForm muscles={muscles} exercise={exercise}/>
   
 }

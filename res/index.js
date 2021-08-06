@@ -1,6 +1,7 @@
 
 export const menuAdmin = [
-    { 'type': 'admin', 'title': 'Usuarios', 'baseUrl': '/admin/user' },
+    { 'type': 'admin', 'title': 'Usuarios', 'baseUrl': '/users/users' },
+    { 'type': 'admin', 'title': 'Nuevo Usuario', 'baseUrl': '/users/usersNew' },
     { 'type': 'admin', 'title': 'Ejercicios', 'baseUrl': '/general/exercises' },
     { 'type': 'admin', 'title': 'Nuevo Ejercicio', 'baseUrl': '/general/exercisesNew' },
 ]
@@ -21,5 +22,15 @@ export const STATE = [
     { value: 'Uploaded', label: 'Cargado' },
 ]
 
+export const PROFILE = [
+    "Alumno",
+    "Profesor",
+    "Admin"
+]
+
+export const GENDER = [
+    "Masculino",
+    "Femenino"
+]
 
 export const URL = process.env.REACT_APP_URL

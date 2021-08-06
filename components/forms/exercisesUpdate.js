@@ -31,7 +31,6 @@ const ExercisesForm = ({ muscles, exercise }) => {
 
     let musculo = muscles.filter((i) => i._id === exercise.muscle[0]?._id)
 
-    console.log('exercise',musculo[0].description)
     const [state, setstate] = useState({
         name: exercise?.name,
         description: exercise?.description,
@@ -169,7 +168,7 @@ const ExercisesForm = ({ muscles, exercise }) => {
                     </NativeSelect>
                     <FormHelperText>Músculo involucrado</FormHelperText>
                 </FormControl>
-                <Button disabled={state.name == '' || state.description == '' || state.image == '' //|| state.muscle == ''
+                <Button disabled={state.name == '' || state.description == '' || state.image == '' || state.muscle == ''
                 } 
                 type='submit' variant="contained"
                     color="primary" onClick={() => createExercise(state)}>
