@@ -9,6 +9,8 @@ import Swal from 'sweetalert2'
 import { useRouter } from 'next/router'
 import { UPDATE_EXERCISES } from 'container/Mutations'
 import { getAxios } from 'hoc/simpleFunctions'
+import { middleWareRoutes } from 'hoc/simpleFunctions'
+import { useAppContext } from 'store/Context'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const ExercisesForm = ({ muscles, exercise }) => {
     const classes = useStyles();
     const router = useRouter()
+    const { isAuth } = useAppContext()
 
     let musculo = muscles.filter((i) => i._id === exercise.muscle[0]?._id)
 
@@ -61,7 +64,7 @@ const ExercisesForm = ({ muscles, exercise }) => {
             confirmButtonText: `Volver a lista`,
         }).then((result) => {
             if (result.isConfirmed) {
-                router.push('/general/exercises')
+                middleWareRoutes(router, isAuth.autorization, '/general/exercises')
             }
         })
 
@@ -92,9 +95,10 @@ const ExercisesForm = ({ muscles, exercise }) => {
             alignContent: 'center',
             alignItems: 'center'
         }} spacing={3}>
+            <Grid item xs={12}>
             <Typography variant="h2" component="h3" gutterBottom>
                 Modificar Ejercicio
-            </Typography>
+            </Typography></Grid>
             <Grid item xs={8}>
                 <FormControl fullWidth >
                     <TextField

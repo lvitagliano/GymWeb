@@ -9,6 +9,8 @@ import Swal from 'sweetalert2'
 import { useRouter } from 'next/router'
 import { CREATE_EXERCISES } from 'container/Mutations'
 import { getAxios } from 'hoc/simpleFunctions'
+import { useAppContext } from 'store/Context'
+import { middleWareRoutes } from 'hoc/simpleFunctions'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const ExercisesForm = ({ muscles }) => {
     const classes = useStyles();
     const router = useRouter()
+    const { isAuth } = useAppContext()
 
     const [state, setstate] = useState({
         name: '',
@@ -59,7 +62,7 @@ const ExercisesForm = ({ muscles }) => {
             confirmButtonText: `Volver a lista`,
         }).then((result) => {
             if (result.isConfirmed) {
-                router.push('/general/exercises')
+                middleWareRoutes(router, isAuth.autorization, '/general/exercises')
             }
         })
 
@@ -90,9 +93,11 @@ const ExercisesForm = ({ muscles }) => {
             alignContent: 'center',
             alignItems: 'center'
         }} spacing={3}>
+                      <Grid item xs={12}>
             <Typography variant="h2" component="h3" gutterBottom>
                 Nuevo Ejercicio
             </Typography>
+            </Grid>
             <Grid item xs={8}>
                 <FormControl fullWidth >
                     <TextField

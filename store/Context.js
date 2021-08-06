@@ -1,7 +1,8 @@
 import React, { useContext, createContext, useState, useMemo, useEffect } from 'react';
-import Cookies from 'js-cookie'
 import { useRouter } from "next/router"
-import axios from 'axios'
+import { getAxios } from 'hoc/simpleFunctions'
+import { GET_CURRENT_USER} from 'container/Querys'
+import Cookies from 'js-cookie'
 
 //Context
 export const AppContext = createContext(null);
@@ -9,62 +10,44 @@ export const AppContext = createContext(null);
 //Provider
 export const AppContextProvider = ({ children }) => {
   const router = useRouter()
-  const URL = process.env.NEXT_PUBLIC_AUTH_URL
   const [product, setProduct] = useState({});
 
   const [userType, setUserType] = useState({
-    type:'',
-    id:'',
+    profile:'',
+    _id:'',
     identifier:'',
     firstName:'',
     lastName:'',
     email: ''
   })
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState({
+    autorization: false,
+    token: ''
+  });
 
-  const activeAuth = () => {
-    setIsAuth(true)
-  }
-
-  const removeAuth = () => {
-    setIsAuth({
-      type:'',
-      id:'',
-      identifier:'',
-      firstName:'',
-      lastName:'',
-      email: ''
-    })
-    setIsAuth(false)
-    router.reload()
-  }
 
   const getCurrentUserFnc = () => {
-    if(userType.identifier === undefined 
-      || userType.identifier === ''
-      ){
-      axios.get(`${URL}/users/currentUser`,{
-        headers:{'Content-Type': "application/json"},
-        withCredentials: true
-      }).then((res)=>{
-        const user = res.data
-        if(res.data !== ''){
-          setUserType({
-            type:user.userType,
-            id:user._id,
-            identifier:user.userName,
-            firstName:user.firstName,
-            lastName:user.lastName,
-            email:user.email
-          })
-          setIsAuth(true)
-        }
-      }).catch((error)=>{
-        console.log(error)
-      })
-    }else{
-      setIsAuth(true)
+    let tokens = Cookies.get('token')
+    console.log('tokens', tokens)
+    if(tokens){
+      let body =  { 
+        query: GET_CURRENT_USER,
+        variables: { token: tokens }
     }
+    getAxios(body).then(resp => setUserType({
+      email: resp?.data?.data?.getCurrentUser.email,
+      firstName: resp?.data?.data?.getCurrentUser.firstName,
+      lastName: resp?.data?.data?.getCurrentUser.lastName,
+      profile: resp?.data?.data?.getCurrentUser.profile,
+      _id: resp?.data?.data?.getCurrentUser._id,
+    }),
+    setIsAuth({
+      autorization: true,
+      token: tokens
+    })
+    )
+    }
+  
   }
 
   //
@@ -77,8 +60,6 @@ export const AppContextProvider = ({ children }) => {
       userType,
       setUserType,
       getCurrentUserFnc,
-      activeAuth,
-      removeAuth,
     }), 
     [isAuth, userType])
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;

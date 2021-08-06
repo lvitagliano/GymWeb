@@ -1,6 +1,9 @@
 module.exports = {
   reactStrictMode: true,
+  experimental: {
+    reactRefresh: false
+  },
   env: {
-    REACT_APP_URL:  'http://localhost:3000/api' //'http://54.208.187.200:3000/api'
+    REACT_APP_URL: 'http://localhost:3000/api'// 'http://54.208.187.200:3000/api'
   },
 }

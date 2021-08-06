@@ -1,9 +1,9 @@
 
 export const menuAdmin = [
-    { 'type': 'admin', 'title': 'Usuarios', 'baseUrl': '/users/users' },
-    { 'type': 'admin', 'title': 'Nuevo Usuario', 'baseUrl': '/users/usersNew' },
-    { 'type': 'admin', 'title': 'Ejercicios', 'baseUrl': '/general/exercises' },
-    { 'type': 'admin', 'title': 'Nuevo Ejercicio', 'baseUrl': '/general/exercisesNew' },
+    { 'type': 'Admin', 'title': 'Usuarios', 'baseUrl': '/users/users' },
+    { 'type': 'Admin', 'title': 'Nuevo Usuario', 'baseUrl': '/users/usersNew' },
+    { 'type': 'Admin', 'title': 'Ejercicios', 'baseUrl': '/general/exercises' },
+    { 'type': 'Admin', 'title': 'Nuevo Ejercicio', 'baseUrl': '/general/exercisesNew' },
 ]
 
 export const Colors = [

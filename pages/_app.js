@@ -10,10 +10,6 @@ import Cookies from 'js-cookie'
 
 const MyApp = ({ Component, pageProps, router}) => {  
    
-  const token = Cookies.getJSON('token')
-  const rutas = useRouter()
-
-
   return (
     <>
       <Head>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { withRouter } from 'next/router'
 import Login from 'components/account/login'
-import Register from 'components/account/register'
 import Remember from 'components/account/remember'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
@@ -24,12 +23,6 @@ const Account = ({ router }) => {
         switch (type) {
             case 'login':
                 return <Login />
-                break;
-            case 'register':
-                return <Register />
-                break;
-            case 'remember':
-                return <Remember />
                 break;
             default:
                 return <Login />

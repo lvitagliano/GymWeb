@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = ({ open, handleDrawerClose, userType='admin' }) => {
+const Navbar = ({ open, handleDrawerClose, userType }) => {
   const classes = useStyles();
   const theme = useTheme();
   const router = useRouter()
@@ -64,7 +64,7 @@ const Navbar = ({ open, handleDrawerClose, userType='admin' }) => {
     router.push(`/account/login`)
   }
 
-  const renderList = () => {
+  const renderList = (profile) => {
      return <Drawer
       className={classes.drawer}
       variant="persistent"
@@ -85,7 +85,7 @@ const Navbar = ({ open, handleDrawerClose, userType='admin' }) => {
       <Divider style={{ backgroundColor: 'white' }} />
       <List>
         {menuAdmin
-        .filter((menu) => menu.type === 'admin')
+        .filter((menu) => menu.type === profile)
         .map((text, i) => (
           <ListItem key={i} button key={text} onClick={handleClick}>
             <Link href={text.baseUrl} passHref>

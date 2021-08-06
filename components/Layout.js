@@ -72,25 +72,15 @@ const Layout = ({ children }) => {
   const URL = process.env.NEXT_PUBLIC_AUTH_URL
 
   const [open, setOpen] = useState(false);
-  const { removeAuth, isAuth, userType, getCurrentUserFnc } = useAppContext()
-  const handleClean = () => {
-    router.push("/")
-  }
-
-  const [state, setstate] = useState({
-    isLoading: '',
-    error: ''
-  });
-
-  function verAuth(auto){
-    if(!auto){
-      router.push('/')
-    }
-  }
+  const { isAuth, userType, getCurrentUserFnc } = useAppContext()
 
   useEffect(() => {
     getCurrentUserFnc()
-    verAuth(isAuth)
+    if(isAuth.autorization){
+      router.push('/')
+    }else{
+      router.push('/login')
+    }
   }, [])
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -117,7 +107,6 @@ const Layout = ({ children }) => {
       withCredentials:true
     }).then((res)=>{
       handleClose()
-      removeAuth()
       router.push('/')
       
     }).catch((error)=>{
@@ -145,7 +134,7 @@ const Layout = ({ children }) => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <IconButton
+             {isAuth.autorization &&  <IconButton
                 color="inherit"
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
@@ -153,7 +142,7 @@ const Layout = ({ children }) => {
                 className={clsx(classes.menuButton, open && classes.hide)}
               >
                 <MenuIcon style={{ color: 'white', fontSize: 35 }} />
-              </IconButton>
+              </IconButton>}
               <div className={clsx(!open && classes.hide)} />
               <Logo url={'/'} />
               <Button aria-controls="simple-menu"
@@ -162,11 +151,10 @@ const Layout = ({ children }) => {
             </Grid>
           </Toolbar>
         </AppBar>
-        <NavBar open={open} userType={userType?.type} handleDrawerClose={() => handleDrawerClose()} />
+        <NavBar open={open} userType={userType?.profile} handleDrawerClose={() => handleDrawerClose()} />
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
-
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
@@ -183,7 +171,6 @@ const Layout = ({ children }) => {
           {children}
         </main>
       </div>
-
   }
 
   return renderApBar(isAuth)

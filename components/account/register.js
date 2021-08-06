@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { useMutation } from '@apollo/client';
 import { useAppContext } from 'store/Context';
 import Cookies from 'js-cookie'
-import { CREATEUSER } from 'container/Mutation';
+import { CREATE_USER } from 'container/Mutations';
 import { makeStyles } from '@material-ui/core/styles'
 import {Paper, Card, CardActions,CardContent,Button, Grid, FormControl,
 IconButton, Input, InputLabel, InputAdornment} from '@material-ui/core'

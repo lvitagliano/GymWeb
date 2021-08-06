@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
   const router = useRouter()
   const classes = useStyles();
-  const { isAuth = null } = useAppContext()
+  const { isAuth } = useAppContext()
 
   const renderIndex = (auth) => {
     if(auth){
@@ -41,6 +41,7 @@ export default function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         {
+          console.log('isAuth',isAuth),
           renderIndex(isAuth)
         }
       </main>

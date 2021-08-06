@@ -38,8 +38,8 @@ const UsersUpdate = ({ user }) => {
         nac: user?.nac,
         gender: user?.gender,
         profile: user?.profile,
-        weightStart: user?.weightStart,
-        weightActual: user?.weightActual
+        weightStart: Number(user?.weightStart),
+        weightActual: Number(user?.weightActual)
     })
 
     const handleChange = (event) => {
