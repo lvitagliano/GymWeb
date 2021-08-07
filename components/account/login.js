@@ -90,7 +90,7 @@ export default function Login() {
                       getAxios(body).then(resp => {
                         setCookie("user", JSON.stringify({token: res.data.data.auth, user: resp.data.data.getCurrentUser}), {
                             path: "/",
-                            maxAge: 60, // Expires after 1hr
+                            maxAge: 86400, // Expires after 24hs
                             sameSite: true,
                           }),
                         setUserType({
