@@ -62,7 +62,7 @@ const ExercisesForm = ({ muscles }) => {
             confirmButtonText: `Volver a lista`,
         }).then((result) => {
             if (result.isConfirmed) {
-                middleWareRoutes(router, isAuth.autorization, '/general/exercises')
+                middleWareRoutes(router, '/general/exercises')
             }
         })
 

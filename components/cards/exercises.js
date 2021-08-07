@@ -25,10 +25,13 @@ const CardExercises = ({item}) => {
     const classes = useStyles();
     const router = useRouter()
     const { isAuth } = useAppContext()
-    
     return (
     <Card className={classes.root}>
-      <CardActionArea  onClick={() => middleWareRoutes(router, isAuth.autorization, '/general/exercisesDetail', item._id)
+      <CardActionArea  onClick={() => 
+       router.push({
+        pathname: '/general/exercisesDetail',
+        query: { id: item._id },
+      })
       }>
         <Grid container className={classes.gridMedia} spacing={2}>
         <CardMedia

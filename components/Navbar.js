@@ -61,7 +61,7 @@ const Navbar = ({ open, handleDrawerClose, userType }) => {
   }
 
   const handleReturn = () => {
-    router.push(`/account/login`)
+    router.push(`/login`)
   }
 
   const renderList = (profile) => {

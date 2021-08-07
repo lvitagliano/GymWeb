@@ -1,6 +1,6 @@
-import { CompassCalibrationOutlined } from '@material-ui/icons'
 import axios from 'axios'
 import { URL } from 'res/index'
+import cookie from "cookie"
 
 
 export function errorManager(Error) {
@@ -20,7 +20,7 @@ export const getAxios = body => {
   }
 
 
-export const middleWareRoutes = (router, auth, ruta, query) => { 
+export const middleWareRoutes = (router, ruta, query) => { 
     let path = {
         pathname: ruta,
         query: { id: query },
@@ -28,8 +28,6 @@ export const middleWareRoutes = (router, auth, ruta, query) => {
     let pathSin = {
         pathname: ruta,
     }
-
-        if(auth){
             if(query){
                 router.push(path)
 
@@ -37,10 +35,12 @@ export const middleWareRoutes = (router, auth, ruta, query) => {
                 router.push(pathSin)
 
             }
-        }else{
-            router.push('/login')
-        }
+
 
    
   }
 
+  export function parseCookies(req) {
+    return cookie.parse(req ? req.headers.cookie || "" : document.cookie)
+  }
+  

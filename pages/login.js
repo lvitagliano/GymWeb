@@ -38,7 +38,7 @@ const Account = ({ router }) => {
             justifyContent="center"
             alignItems="center"
         >
-            <Grid style={{ marginTop: 50, marginBottom: 30 }}><Logo url={'/account/login'}/></Grid>
+            <Grid style={{ marginTop: 50, marginBottom: 30 }}><Logo url={'/login'}/></Grid>
 
             {
                 switcherType(query.formtype)

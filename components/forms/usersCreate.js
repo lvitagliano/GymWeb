@@ -117,7 +117,7 @@ const UsersCreate = () => {
             alignItems: 'center'
         }} spacing={3}>
           <Grid item xs={12}><Typography variant="h2" component="h3" gutterBottom>
-                Modificar Usuario
+                Nuevo Usuario
             </Typography></Grid>  
             <Grid item xs={5}>
                 <FormControl fullWidth >

@@ -5,6 +5,8 @@ import { getAxios } from 'hoc/simpleFunctions'
 import { GET_ALL_USER } from 'container/Querys'
 import CardUsers from 'components/cards/users'
 import { makeStyles } from '@material-ui/core/styles'
+import { parseCookies } from 'hoc/simpleFunctions'
+import Router from 'next/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +54,20 @@ const Index = ({ users }) => {
     )
 }
 
-Index.getInitialProps = async (context, dos) => {
+Index.getInitialProps = async (ctx) => {
+    const data = parseCookies(ctx.req)
+    if (data) {
+        if (Object.keys(data).length === 0 && data.constructor === Object) {
+            if(typeof window === 'undefined'){
+                ctx. res.writeHead(302, {location: '/login'})
+                ctx.res.end()
+            } else {
+            // On client
+              Router.push('/login')
+            }
+        }
+      }
+      
     let users = {}
     let body = {
         query: GET_ALL_USER

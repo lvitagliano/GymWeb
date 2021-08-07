@@ -9,6 +9,7 @@ import { AppBar, Grid, Toolbar, IconButton, Menu, MenuItem, Button } from '@mate
 import clsx from 'clsx'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Logo } from "./Logo"
+import { useCookies } from "react-cookie"
 
 const drawerWidth = 240;
 
@@ -66,24 +67,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Layout = ({ children }) => {
+  const [cookies] = useCookies(['user'])
   const router = useRouter()
   const classes = useStyles();
   const theme = useTheme();
   const URL = process.env.NEXT_PUBLIC_AUTH_URL
 
   const [open, setOpen] = useState(false);
-  const { isAuth, userType, getCurrentUserFnc } = useAppContext()
+  const { isAuth, userType } = useAppContext()
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   useEffect(() => {
-    getCurrentUserFnc()
-    if(isAuth.autorization){
-      router.push('/')
-    }else{
-      router.push('/login')
-    }
-  }, [])
+    console.log('cookies',cookies?.user?.user?.profile)
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  }, [cookies])
+
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -134,7 +133,7 @@ const Layout = ({ children }) => {
               justifyContent="space-between"
               alignItems="center"
             >
-             {isAuth.autorization &&  <IconButton
+             {cookies?.user?.user?.profile &&  <IconButton
                 color="inherit"
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
@@ -151,7 +150,7 @@ const Layout = ({ children }) => {
             </Grid>
           </Toolbar>
         </AppBar>
-        <NavBar open={open} userType={userType?.profile} handleDrawerClose={() => handleDrawerClose()} />
+        <NavBar open={open} userType={cookies?.user?.user?.profile} handleDrawerClose={() => handleDrawerClose()} />
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
@@ -173,7 +172,7 @@ const Layout = ({ children }) => {
       </div>
   }
 
-  return renderApBar(isAuth)
+  return renderApBar(cookies)
 }
 
 export default Layout

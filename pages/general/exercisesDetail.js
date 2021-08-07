@@ -6,6 +6,8 @@ import { getAxios } from 'hoc/simpleFunctions'
 import { GET_EXERCISE_BY_ID, GET_All_MUSCLES } from 'container/Querys'
 import { makeStyles } from '@material-ui/core/styles'
 import ExercisesForm from '@/components/forms/exercisesUpdate'
+import { parseCookies } from 'hoc/simpleFunctions'
+import Router from 'next/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,13 +25,25 @@ return exercise && muscles &&  <ExercisesForm muscles={muscles} exercise={exerci
   
 }
 
-Index.getInitialProps = async (context, dos) => {
+Index.getInitialProps = async (ctx) => {
+    const data = parseCookies(ctx.req)
+    if (data) {
+        if (Object.keys(data).length === 0 && data.constructor === Object) {
+            if(typeof window === 'undefined'){
+                ctx.res.writeHead(302, {location: '/login'})
+                ctx.res.end()
+            } else {
+            // On client
+              Router.push('/login')
+            }
+        }
+      }
     let exercise = {}
     let muscles = {}
 
     let bodyExercise =  { 
         query: GET_EXERCISE_BY_ID,
-        variables: { idExececise: context.query?.id }
+        variables: { idExececise: ctx.query?.id }
     }
 
     let bodyMuscle = {

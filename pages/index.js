@@ -1,10 +1,9 @@
 import styles from 'styles/Home.module.css'
-import { useRouter } from 'next/router'
 import Grid from '@material-ui/core/Grid'
 import { Logo } from "components/Logo"
 import { makeStyles } from '@material-ui/core/styles'
-import Cookies from 'js-cookie' 
-import { useAppContext } from 'store/Context'
+import { parseCookies } from 'hoc/simpleFunctions'
+import Router from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,13 +11,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home() {
-  const router = useRouter()
+const Index = ({data}) => {
   const classes = useStyles();
-  const { isAuth } = useAppContext()
 
   const renderIndex = (auth) => {
-    if(auth){
+    if(!auth){
       return <>
       <h1 className={styles.title}>
       <a >New Olympic Gym</a>
@@ -41,8 +38,7 @@ export default function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         {
-          console.log('isAuth',isAuth),
-          renderIndex(isAuth)
+          renderIndex()
         }
       </main>
 
@@ -59,3 +55,24 @@ export default function Home() {
     </div>
   )
 }
+
+Index.getInitialProps = async (ctx) => {
+  const data = parseCookies(ctx.req)
+if (data) {
+    if (Object.keys(data).length === 0 && data.constructor === Object) {
+      if(typeof window === 'undefined'){
+        ctx.res.writeHead(302, {location: '/login'})
+        ctx.res.end()
+    } else {
+    // On client
+      Router.push('/login')
+    }
+    }
+  }
+
+  return {
+    data: data && data,
+  }
+}
+
+export default Index

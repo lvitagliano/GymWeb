@@ -6,6 +6,8 @@ import { getAxios } from 'hoc/simpleFunctions'
 import { GET_USER_BY_ID } from 'container/Querys'
 import { makeStyles } from '@material-ui/core/styles'
 import UsersUpdate from '@/components/forms/usersUpdate'
+import { parseCookies } from 'hoc/simpleFunctions'
+import Router from 'next/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,12 +25,25 @@ return user &&  <UsersUpdate user={user} />
   
 }
 
-Index.getInitialProps = async (context) => {
+Index.getInitialProps = async (ctx) => {
+    const data = parseCookies(ctx.req)
+    if (data) {
+        if (Object.keys(data).length === 0 && data.constructor === Object) {
+          if(typeof window === 'undefined'){
+            ctx. res.writeHead(302, {location: '/login'})
+            ctx.res.end()
+        } else {
+        // On client
+          Router.push('/login')
+        }
+        }
+      }
+
     let user = {}
 
     let body =  { 
         query: GET_USER_BY_ID,
-        variables: { idUser: context.query?.id }
+        variables: { idUser: ctx.query?.id }
     }
 
      await getAxios(body).then(resp => user = resp.data.data.getUserById)

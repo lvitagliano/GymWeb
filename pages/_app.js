@@ -6,7 +6,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from 'components/theme'
 import { useRouter } from 'next/router'
 import { AppContextProvider } from "store/Context";
-import Cookies from 'js-cookie' 
+import { CookiesProvider } from "react-cookie"
 
 const MyApp = ({ Component, pageProps, router}) => {  
    
@@ -16,11 +16,13 @@ const MyApp = ({ Component, pageProps, router}) => {
         <title>New Olympic Gym</title>
       </Head>
       <ThemeProvider theme={theme}>
+      <CookiesProvider>
         <AppContextProvider>
             <Layout>
               <Component {...pageProps} />
             </Layout>
         </AppContextProvider>
+        </CookiesProvider>
       </ThemeProvider>
     </>
   )
