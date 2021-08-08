@@ -1,9 +1,13 @@
+import React, { useState, useEffect } from 'react'
 import styles from 'styles/Home.module.css'
 import Grid from '@material-ui/core/Grid'
 import { Logo } from "components/Logo"
 import { makeStyles } from '@material-ui/core/styles'
 import { parseCookies } from 'hoc/simpleFunctions'
 import Router from 'next/router'
+import Login from 'components/account/login'
+import { useAppContext } from 'store/Context'
+import FirstNew from 'components/FirstNew'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,32 +17,42 @@ const useStyles = makeStyles((theme) => ({
 
 const Index = ({data}) => {
   const classes = useStyles();
+  const {setIsAuth,isAuth} = useAppContext();
+  useEffect(() => {
+    setIsAuth(data.user ? true : false)
+  }, [data])
+  console.log('data', data.user)
+
 
   const renderIndex = (auth) => {
-    if(!auth){
+    if(auth){
       return <>
-      <h1 className={styles.title}>
+         <h1 className={styles.title}>
       <a >New Olympic Gym</a>
     </h1>
- 
+    <FirstNew />
+    <br />
+    {/* <First /> */}
     </>
     }else{
       return <Grid
       className={classes.root}
       container
       direction="column"
-      justifyContent="center"
+      justify="center"
       alignItems="center"
   >
       <Grid style={{marginBottom: 30 }}><Logo url={'/'}/></Grid>
+      <Login />
     </Grid>
     }
   }
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         {
-          renderIndex()
+          renderIndex(data.user)
         }
       </main>
 
@@ -58,17 +72,6 @@ const Index = ({data}) => {
 
 Index.getInitialProps = async (ctx) => {
   const data = parseCookies(ctx.req)
-if (data) {
-    if (Object.keys(data).length === 0 && data.constructor === Object) {
-      if(typeof window === 'undefined'){
-        ctx.res.writeHead(302, {location: '/login'})
-        ctx.res.end()
-    } else {
-    // On client
-      Router.push('/login')
-    }
-    }
-  }
 
   return {
     data: data && data,

@@ -24,17 +24,15 @@ return muscles && <ExercisesForm muscles={muscles}/>
 
 Index.getInitialProps = async (ctx) => {
   const data = parseCookies(ctx.req)
-  if (data) {
-      if (Object.keys(data).length === 0 && data.constructor === Object) {
-        if(typeof window === 'undefined'){
-          ctx.res.writeHead(302, {location: '/login'})
-          ctx.res.end()
-      } else {
-      // On client
-        Router.push('/login')
-      }
-      }
-    }
+  if(!data.user){
+    if(typeof window === 'undefined'){
+      ctx.res.writeHead(301, {location: '/'})
+      ctx.res.end()
+  } else {
+  // On client
+    Router.push('/')
+  }
+  }
   let muscles = {}
   let body = {
       query: GET_All_MUSCLES

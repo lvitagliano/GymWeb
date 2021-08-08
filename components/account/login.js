@@ -68,6 +68,7 @@ export default function Login() {
         event.preventDefault();
     };
    
+    
     const loginFunc = async (estado) => {
             let body = {
                 query: AUTH,

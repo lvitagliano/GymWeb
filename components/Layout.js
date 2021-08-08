@@ -72,14 +72,11 @@ const Layout = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
   const URL = process.env.NEXT_PUBLIC_AUTH_URL
-
   const [open, setOpen] = useState(false);
-  const { isAuth, userType } = useAppContext()
+  const { userType } = useAppContext()
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   useEffect(() => {
-    console.log('cookies',cookies?.user?.user?.profile)
-
 
   }, [cookies])
 
@@ -117,7 +114,7 @@ const Layout = ({ children }) => {
   };
 
   const renderApBar = (auth) => {
- return <div className={classes.root}>
+  return <div className={classes.root}>
         <CssBaseline />
         <AppBar
           style={{ display: auth ? 'block' : 'none' }}

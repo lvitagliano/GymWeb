@@ -1,10 +1,9 @@
 import 'styles/globals.css'
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import { ThemeProvider } from '@material-ui/styles';
 import theme from 'components/theme'
-import { useRouter } from 'next/router'
 import { AppContextProvider } from "store/Context";
 import { CookiesProvider } from "react-cookie"
 
