@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 3005",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production next start",
+    "pm2": "pm2",
     "export": "next export"
   },
   "dependencies": {
