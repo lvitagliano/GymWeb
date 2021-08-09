@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
     const classes = useStyles();
-    const { setUserType,  } = useAppContext();
+    const { setUserType } = useAppContext();
     const router = useRouter()
     const [cookie, setCookie] = useCookies(["user"])
 
