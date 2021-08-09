@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid'
 import { Logo } from "components/Logo"
 import { makeStyles } from '@material-ui/core/styles'
 import { parseCookies } from 'hoc/simpleFunctions'
-import Router from 'next/router'
 import Login from 'components/account/login'
 import { useAppContext } from 'store/Context'
 import FirstNew from 'components/FirstNew'
@@ -17,12 +16,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Index = ({data}) => {
   const classes = useStyles();
-  const {setIsAuth,isAuth} = useAppContext();
+  const {setIsAuth} = useAppContext();
   useEffect(() => {
     setIsAuth(data.user ? true : false)
   }, [data])
-  console.log('data', data.user)
-
 
   const renderIndex = (auth) => {
     if(auth){
