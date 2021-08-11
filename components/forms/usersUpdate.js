@@ -68,6 +68,8 @@ const UsersUpdate = ({ user, contactForm, medicForm, covidForm, }) => {
         nac: user?.nac,
         gender: user?.gender,
         profile: user?.profile,
+        address: user?.address,
+        dni: user?.dni,
         weightStart: Number(user?.weightStart),
         weightActual: Number(user?.weightActual)
     })
@@ -111,6 +113,8 @@ const UsersUpdate = ({ user, contactForm, medicForm, covidForm, }) => {
             nac: estado?.nac,
             gender: estado?.gender,
             profile: estado?.profile,
+            address: estado?.address,
+            dni: Number(estado?.dni),
             weightStart: estado?.weightStart,
             weightActual: estado?.weightActual
         }
@@ -196,18 +200,18 @@ const UsersUpdate = ({ user, contactForm, medicForm, covidForm, }) => {
             <Grid item xs={5}>
                 <FormControl fullWidth >
                     <TextField
-                        name="phone"
+                        name="dni"
                         style={{
                             width: '100%'
                         }}
-                        value={state?.phone}
+                        value={state?.dni}
                         onChange={handleChange}
                         fullWidth
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        placeholder="Teléfono"
-                        helperText="Teléfono"
+                        placeholder="DNI"
+                        helperText="DNI"
                     />
 
                 </FormControl>
@@ -250,6 +254,47 @@ const UsersUpdate = ({ user, contactForm, medicForm, covidForm, }) => {
 
                 </FormControl>
             </Grid>
+
+            <Grid item xs={3}>
+                <FormControl fullWidth >
+                    <TextField
+                        name="phone"
+                        style={{
+                            width: '100%'
+                        }}
+                        value={state?.phone}
+                        onChange={handleChange}
+                        fullWidth
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        placeholder="Teléfono"
+                        helperText="Teléfono"
+                    />
+
+                </FormControl>
+            </Grid>
+
+            <Grid item xs={7}>
+                <FormControl fullWidth >
+                    <TextField
+                        name="address"
+                        style={{
+                            width: '100%'
+                        }}
+                        value={state?.address}
+                        onChange={handleChange}
+                        fullWidth
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        placeholder="Dirección"
+                        helperText="Dirección"
+                    />
+
+                </FormControl>
+            </Grid>
+            
             <Grid item xs={10} container
                 direction="row"
                 justifyContent="space-between"

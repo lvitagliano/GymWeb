@@ -40,6 +40,8 @@ const UsersCreate = () => {
         nac: '',
         gender: '',
         profile: '',
+        address: '',
+        dni: '',
         weightStart: '',
         weightActual: '',
         showPassword: false,
@@ -85,6 +87,8 @@ const UsersCreate = () => {
             gender: estado?.gender,
             password: estado?.password,
             profile: estado?.profile,
+            address: estado?.address,
+            dni: Number(estado?.dni),
             weightStart: Number(estado?.weightStart),
             weightActual: Number(estado?.weightActual)
         }
@@ -227,18 +231,18 @@ const UsersCreate = () => {
             <Grid item xs={5}>
                 <FormControl fullWidth >
                     <TextField
-                        name="phone"
+                        name="dni"
                         style={{
                             width: '100%'
                         }}
-                        value={state?.phone}
+                        value={state?.dni}
                         onChange={handleChange}
                         fullWidth
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        placeholder="Teléfono"
-                        helperText="Teléfono"
+                        placeholder="DNI"
+                        helperText="DNI"
                     />
 
                 </FormControl>
@@ -281,6 +285,46 @@ const UsersCreate = () => {
 
                 </FormControl>
             </Grid>
+            <Grid item xs={3}>
+                <FormControl fullWidth >
+                    <TextField
+                        name="phone"
+                        style={{
+                            width: '100%'
+                        }}
+                        value={state?.phone}
+                        onChange={handleChange}
+                        fullWidth
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        placeholder="Teléfono"
+                        helperText="Teléfono"
+                    />
+
+                </FormControl>
+            </Grid>
+
+            <Grid item xs={7}>
+                <FormControl fullWidth >
+                    <TextField
+                        name="address"
+                        style={{
+                            width: '100%'
+                        }}
+                        value={state?.address}
+                        onChange={handleChange}
+                        fullWidth
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        placeholder="Dirección"
+                        helperText="Dirección"
+                    />
+
+                </FormControl>
+            </Grid>
+            
             <Grid item xs={10} container
                 direction="row"
                 justifyContent="space-between"
