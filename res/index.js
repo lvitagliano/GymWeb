@@ -33,4 +33,20 @@ export const GENDER = [
     "Femenino"
 ]
 
+export const MEDICS =[
+    { label: 'Respiratoria', value: 'respiratoria' },
+    { label: 'Cardíaca', value: 'cardiaca' },
+    { label: 'Renal', value: 'renal' },
+    { label: 'Convulsión', value: 'convulsion' },
+    { label: 'Neuronales', value: 'neuro' },
+    { label: 'Diabetes', value: 'diabetes' },
+    { label: 'Columna Vertebral', value: 'column' },
+    { label: 'Intervención Quirúrgica', value: 'intQuirur' },
+    { label: 'Asma', value: 'asma' },
+    { label: 'Alergia', value: 'alergia' },
+    { label: 'Lesiones Articulares', value: 'lesArticular' },
+    { label: 'Lesiones Musculares', value: 'lesMuscular' },
+    { label: 'Medicamentos', value: 'medicamentos' },
+]
+
 export const URL = process.env.REACT_APP_URL

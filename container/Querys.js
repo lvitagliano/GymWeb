@@ -19,6 +19,40 @@ query getAllUsers {
     nac
     gender
     profile
+    dni
+    address
+    contactForm{
+      _id
+    completeName
+    phone
+    completeNameTwo
+    phoneTwo
+    }
+    medicForm{
+    _id
+    respiratoria
+    cardiaca
+    presion
+    renal
+    convulsion
+    neuro
+    diabetes
+    column
+    intQuirur
+    asma
+    alergia
+    lesArticular
+    lesMuscular
+    medicamentos
+    descripcionIfSi
+    }
+    covidForm{
+    _id
+    dateInscription
+    sintomas
+    inmunodepre
+    sospecha
+    }
     weightStart
     weightActual
     createdOn
@@ -37,6 +71,40 @@ query getUserByProfile($profile: String) {
     nac
     gender
     profile
+    dni
+    address
+    contactForm{
+      _id
+    completeName
+    phone
+    completeNameTwo
+    phoneTwo
+    }
+    medicForm{
+    _id
+    respiratoria
+    cardiaca
+    presion
+    renal
+    convulsion
+    neuro
+    diabetes
+    column
+    intQuirur
+    asma
+    alergia
+    lesArticular
+    lesMuscular
+    medicamentos
+    descripcionIfSi
+    }
+    covidForm{
+    _id
+    dateInscription
+    sintomas
+    inmunodepre
+    sospecha
+    }
     weightStart
     weightActual
     createdOn
@@ -73,6 +141,40 @@ query getUserById($idUser: ID!) {
     nac
     gender
     profile
+    dni
+    address
+    contactForm{
+      _id
+    completeName
+    phone
+    completeNameTwo
+    phoneTwo
+    }
+    medicForm{
+    _id
+    respiratoria
+    cardiaca
+    presion
+    renal
+    convulsion
+    neuro
+    diabetes
+    column
+    intQuirur
+    asma
+    alergia
+    lesArticular
+    lesMuscular
+    medicamentos
+    descripcionIfSi
+    }
+    covidForm{
+    _id
+    dateInscription
+    sintomas
+    inmunodepre
+    sospecha
+    }
     weightStart
     weightActual
     createdOn
@@ -643,8 +745,158 @@ query getSeriesForDayById($idSerieFoDay: ID){
     }
 } 
 `
+const GET_ALL_CONTACTFORM = `
+query getAllContactForm {
+  getAllContactForm{
+    _id
+    user
+    completeName
+    phone
+    completeNameTwo
+    phoneTwo
+  }
+}
+`
+const GET_CONTACTFORM_BY_ID = `
+query getContactFormById($id: ID!) {
+  getContactFormById(id: $id) {
+    _id
+    user
+    completeName
+    phone
+    completeNameTwo
+    phoneTwo
+  }
+}
+`
+const GET_CONTACTFORM_BY_USER = `
+query getContactFormByUser($idUser: ID!) {
+  getContactFormByUser(user: $idUser) {
+    _id
+    user
+    completeName
+    phone
+    completeNameTwo
+    phoneTwo
+ } 
+}
+`
+const GET_ALL_MEDICFORM = `
+query getAllMedicForm {
+  getAllMedicForm{
+    _id
+    user
+    respiratoria
+    cardiaca
+    presion
+    renal
+    convulsion
+    neuro
+    diabetes
+    column
+    intQuirur
+    asma
+    alergia
+    lesArticular
+    lesMuscular
+    medicamentos
+    descripcionIfSi
+  }
+}
+`
+const GET_MEDICFORM_BY_ID = `
+query getMedicFormById($id: ID!) {
+  getMedicFormById(id: $id) {
+    _id
+    user
+    respiratoria
+    cardiaca
+    presion
+    renal
+    convulsion
+    neuro
+    diabetes
+    column
+    intQuirur
+    asma
+    alergia
+    lesArticular
+    lesMuscular
+    medicamentos
+    descripcionIfSi
+  }
+}
+`
+const GET_MEDICFORM_BY_USER = `
+query getMedicFormByUser($idUser: ID!) {
+  getMedicFormByUser(user: $idUser) {
+    _id
+    user
+    respiratoria
+    cardiaca
+    presion
+    renal
+    convulsion
+    neuro
+    diabetes
+    column
+    intQuirur
+    asma
+    alergia
+    lesArticular
+    lesMuscular
+    medicamentos
+    descripcionIfSi
+ } 
+}
+`
+const GET_ALL_COVIDFORM = `
+query getAllCovidForm {
+  getAllCovidForm{
+    _id
+    user
+    dateInscription
+    sintomas
+    inmunodepre
+    sospecha
+  }
+}
+`
+const GET_COVIDFORM_BY_ID = `
+query getCovidFormById($id: ID!) {
+  getCovidFormById(id: $id) {
+    _id
+    user
+    dateInscription
+    sintomas
+    inmunodepre
+    sospecha
+  }
+}
+`
+const GET_COVIDFORM_BY_USER = `
+query getCovidFormByUser($idUser: ID!) {
+  getCovidFormByUser(user: $idUser) {
+    _id
+    user
+    dateInscription
+    sintomas
+    inmunodepre
+    sospecha
+ } 
+}
+`
 
 export {
+  GET_COVIDFORM_BY_USER,
+  GET_COVIDFORM_BY_ID,
+  GET_ALL_COVIDFORM,
+  GET_MEDICFORM_BY_USER,
+  GET_MEDICFORM_BY_ID,
+  GET_ALL_MEDICFORM,
+  GET_CONTACTFORM_BY_USER,
+  GET_CONTACTFORM_BY_ID,
+  GET_ALL_CONTACTFORM,
   GET_ALL_DAY_FOR_RUTINE_RUTINE_DO,
   GET_ALL_DAY_FOR_RUTINE_STUDENT,
   GET_ALL_DAY_FOR_RUTINE_DO_STUDENT,

@@ -177,7 +177,63 @@ mutation deleteDayForRoutinesDo($iddayForRutine: ID) {
   deleteDayForRoutinesDo(_id: $iddayForRutine)
 }
 `
-
+const CREATE_CONTACT_FORM = `
+mutation createContactForm($Input: Input) {
+  createContactForm(input: $Input){
+    _id
+  }
+}
+`
+const UPDATE_CONTACT_FORM = `
+mutation updateContactForm($id: ID, $Input: Input) {
+  updateContactForm(_id: $id, input: $Input){
+    _id
+  }
+}
+`
+const DELETE_CONTACT_FORM = `
+mutation deleteContactForm($id: ID) {
+  deleteContactForm(_id: $id)
+}
+`
+const CREATE_MEDIC_FORM = `
+mutation createMedicForm($Input: Input) {
+  createMedicForm(input: $Input){
+    _id
+  }
+}
+`
+const UPDATE_MEDIC_FORM = `
+mutation updateMedicForm($id: ID, $Input: Input) {
+  updateMedicForm(_id: $id, input: $Input){
+    _id
+  }
+}
+`
+const DELETE_MEDIC_FORM = `
+mutation deleteMedicForm($id: ID) {
+  deleteMedicForm(_id: $id)
+}
+`
+const CREATE_COVID_FORM = `
+mutation createCovidForm($Input: Input) {
+  createCovidForm(input: $Input){
+    _id
+  }
+}
+`
+const UPDATE_COVID_FORM = `
+mutation updateCovidForm($id: ID, $Input: Input) {
+  updateCovidForm(_id: $id, input: $Input){
+    _id
+  }
+}
+`
+const DELETE_COVID_FORM= `
+mutation deleteCovidForm($id: ID) {
+  deleteCovidForm(_id: $id)
+}
+`
 export { 
   AUTH,
   DELETE_USER,
@@ -206,5 +262,14 @@ export {
   DELETE_RUTINES_DO,
   CREATE_DAY_RUTINE_DO,
   UPDATE_DAY_RUTINE_DO,
-  DELETE_DAY_RUTINE_DO
+  DELETE_DAY_RUTINE_DO,
+  CREATE_CONTACT_FORM,
+  UPDATE_CONTACT_FORM,
+  DELETE_CONTACT_FORM,
+  CREATE_MEDIC_FORM,
+  UPDATE_MEDIC_FORM,
+  DELETE_MEDIC_FORM,
+  CREATE_COVID_FORM,
+  UPDATE_COVID_FORM,
+  DELETE_COVID_FORM
  }
