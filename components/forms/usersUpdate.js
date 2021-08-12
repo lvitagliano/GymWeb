@@ -254,7 +254,6 @@ const UsersUpdate = ({ user, contactForm, medicForm, covidForm, }) => {
 
                 </FormControl>
             </Grid>
-
             <Grid item xs={3}>
                 <FormControl fullWidth >
                     <TextField
@@ -274,7 +273,6 @@ const UsersUpdate = ({ user, contactForm, medicForm, covidForm, }) => {
 
                 </FormControl>
             </Grid>
-
             <Grid item xs={7}>
                 <FormControl fullWidth >
                     <TextField
@@ -293,8 +291,7 @@ const UsersUpdate = ({ user, contactForm, medicForm, covidForm, }) => {
                     />
 
                 </FormControl>
-            </Grid>
-            
+            </Grid>       
             <Grid item xs={10} container
                 direction="row"
                 justifyContent="space-between"
