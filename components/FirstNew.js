@@ -24,8 +24,6 @@ export default function First() {
     variables: { idUser: "60f6f6db85cb73be3b4db6e0" }
 }
 
-
-    console.log('bodyContact',bodyContact)
 getAxios(bodyContact).then(resp => console.log(resp))
 
   return (

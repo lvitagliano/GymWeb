@@ -1,7 +1,3 @@
-import {PORT_HOST} from "@env"
-
-export const URI = PORT_HOST
-
 export const URIMG = 'http://www.rpi.sanluis.gov.ar/wp-content/uploads/2021/08/'
 
 export const gender =[

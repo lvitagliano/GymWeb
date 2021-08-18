@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { URL } from 'res/index'
 import { useCookies } from "react-cookie"
-import { getAxios } from 'hoc/simpleFunctions'
+import { getAxios, errorManager } from 'hoc/simpleFunctions'
 import { GET_CURRENT_USER} from 'container/Querys'
 
 const useStyles = makeStyles((theme) => ({

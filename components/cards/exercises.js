@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import {Img} from 'react-image'
 import { useAppContext } from 'store/Context'
 import { middleWareRoutes } from 'hoc/simpleFunctions'
+import { URIMG } from 'res/constant'
 
 const useStyles = makeStyles({
     root: {
@@ -36,7 +37,7 @@ const CardExercises = ({item}) => {
         <Grid container className={classes.gridMedia} spacing={2}>
         <CardMedia
           className={classes.media}
-          image= {`/ejercicios/${item.image}`}
+          image= {`${URIMG}${item.image}`}
           title="Contemplative Reptile"
         />
         </Grid>
