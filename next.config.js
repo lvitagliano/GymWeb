@@ -1,9 +1,15 @@
+/** @type {import('next').NextConfig} */
+const nextEnv = require('next-env')
+
+const nextConfig = {
+  reactStrictMode: true,
+}
+
 module.exports = {
   reactStrictMode: true,
-  experimental: {
-    reactRefresh: false
-  },
   env: {
-    REACT_APP_URL:  'http://35.169.79.57:3000/api' // 'http://localhost:3000/api'//
-  },
+    NEXT_PUBLIC_SECRET: process.env.NEXT_PUBLIC_SECRET,
+  }
 }
+
+module.exports = nextConfig
