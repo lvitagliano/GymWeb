@@ -9,6 +9,7 @@ module.exports = {
   reactStrictMode: true,
   env: {
     NEXT_PUBLIC_SECRET: process.env.NEXT_PUBLIC_SECRET,
+    CI: process.env.CI = false
   }
 }
 
